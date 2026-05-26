@@ -97,7 +97,7 @@ quotes = [
 # ----------------------------
 # THEME SWITCHER
 # ----------------------------
-theme = st.selectbox("🎨 Choose Theme", ["Sage", "Ocean", "Dark", "Minimal"])
+theme = st.selectbox("🎨 Choose Theme", ["Sage", "Ocean", "Dark", "Minimal", "Pink"])
 
 if theme == "Sage":
     bg = "linear-gradient(to bottom right, #f4f7f5, #dde7e1)"
@@ -119,6 +119,13 @@ elif theme == "Dark":
     text = "#f2f2f2"
     box = "rgba(40,40,40,0.9)"
     border = "#444"
+
+elif theme == "Pink":
+    bg = "linear-gradient(to bottom right, #fff0f6, #ffd6e7)"
+    primary = "#ff4d8d"
+    text = "#4a2b3a"
+    box = "rgba(255,255,255,0.85)"
+    border = "#ffc1d6"
 
 else:
     bg = "#f7f7f7"
@@ -244,6 +251,5 @@ for d in sorted(journal_data.keys(), reverse=True):
         st.write("Mood:", journal_data[d]["mood"])
         st.write(journal_data[d]["entry"])
         st.caption(journal_data[d]["time"])
-
 
 
