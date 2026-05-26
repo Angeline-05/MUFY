@@ -15,49 +15,62 @@ st.set_page_config(
 )
 
 # ----------------------------
-# CUSTOM CSS (Cute Theme)
+# CUSTOM CSS (Gender Neutral Theme)
 # ----------------------------
 st.markdown(
     """
     <style>
+
     .stApp {
-        background-color: #fff0f6;
+        background: linear-gradient(to bottom right, #f4f7f5, #dde7e1);
     }
 
     h1, h2, h3 {
-        color: #ff4d8d;
+        color: #2f4f4f;
         text-align: center;
+        font-family: 'Trebuchet MS', sans-serif;
     }
 
     .quote-box {
-        background-color: white;
+        background-color: rgba(255,255,255,0.8);
         padding: 20px;
         border-radius: 20px;
-        border: 2px solid #ffcce0;
+        border: 1px solid #c7d4cc;
         font-size: 22px;
         text-align: center;
-        color: #ff4d8d;
+        color: #2f4f4f;
         margin-bottom: 20px;
-        box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
+        box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
+        backdrop-filter: blur(8px);
     }
 
     .stTextArea textarea {
-        background-color: #fff7fa;
-        border-radius: 12px;
-        border: 2px solid #ffcce0;
+        background-color: #f8fbf9;
+        border-radius: 14px;
+        border: 1px solid #c7d4cc;
+        color: #2f4f4f;
+    }
+
+    .stTextInput input {
+        background-color: #f8fbf9;
+        border-radius: 14px;
+        border: 1px solid #c7d4cc;
+        color: #2f4f4f;
     }
 
     .stButton>button {
-        background-color: #ff80ab;
+        background-color: #5c7c6f;
         color: white;
-        border-radius: 12px;
+        border-radius: 14px;
         border: none;
         padding: 10px 20px;
         font-size: 16px;
+        transition: 0.3s;
     }
 
     .stButton>button:hover {
-        background-color: #ff4d8d;
+        background-color: #40584e;
+        transform: scale(1.03);
     }
 
     </style>
@@ -199,63 +212,4 @@ st.markdown(
     "<center>Made with 💖 using Streamlit</center>",
     unsafe_allow_html=True
 )
-
-# ----------------------------
-# AI POSITIVITY CHATBOT
-# ----------------------------
-st.subheader("🤖 Positivity Chat Buddy")
-
-# Save chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# User input
-user_message = st.chat_input("Type your thoughts here...")
-
-# Bot response function
-def positivity_bot(message):
-    message = message.lower()
-
-    if "sad" in message:
-        return "I'm here for you 💖 Sad days do not last forever."
-
-    elif "stress" in message or "stressed" in message:
-        return "Take things one step at a time 🌸 You do not need to carry everything at once."
-
-    elif "tired" in message:
-        return "You deserve rest too ☁️ Please be gentle with yourself."
-
-    elif "anxious" in message:
-        return "Pause for a moment 🌿 Breathe slowly. You are safe."
-
-    elif "lonely" in message:
-        return "Even when it feels lonely, you are still worthy of love and care ✨"
-
-    elif "happy" in message:
-        return "YAYYY 🌷 Hold onto that happiness!"
-
-    else:
-        return "You are doing better than you think 💕"
-
-# When user sends message
-if user_message:
-
-    # Save user message
-    st.session_state.messages.append(
-        {"role": "user", "content": user_message}
-    )
-
-    # Generate bot response
-    bot_reply = positivity_bot(user_message)
-
-    # Save bot response
-    st.session_state.messages.append(
-        {"role": "assistant", "content": bot_reply}
-    )
-
-# Display chat messages
-for message in st.session_state.messages:
-
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
 
