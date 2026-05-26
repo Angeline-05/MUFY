@@ -15,63 +15,92 @@ st.set_page_config(
 )
 
 # ----------------------------
-# CUSTOM CSS (Gender Neutral Theme)
+# DYNAMIC THEMES
 # ----------------------------
+
+if theme == "Sage":
+    bg = "linear-gradient(to bottom right, #f4f7f5, #dde7e1)"
+    primary = "#5c7c6f"
+    text = "#2f4f4f"
+    box = "rgba(255,255,255,0.8)"
+    border = "#c7d4cc"
+
+elif theme == "Ocean":
+    bg = "linear-gradient(to bottom right, #eef7fb, #d6eaf5)"
+    primary = "#4a6fa5"
+    text = "#24405c"
+    box = "rgba(255,255,255,0.85)"
+    border = "#bdd6e6"
+
+elif theme == "Lavender":
+    bg = "linear-gradient(to bottom right, #f6f2ff, #e6ddff)"
+    primary = "#7b6ba8"
+    text = "#4b3f72"
+    box = "rgba(255,255,255,0.85)"
+    border = "#d5c8f2"
+
+elif theme == "Dark":
+    bg = "linear-gradient(to bottom right, #1e1e1e, #2b2b2b)"
+    primary = "#8fa3bf"
+    text = "#f5f5f5"
+    box = "rgba(50,50,50,0.9)"
+    border = "#555555"
+
+# Apply CSS
 st.markdown(
-    """
+    f"""
     <style>
 
-    .stApp {
-        background: linear-gradient(to bottom right, #f4f7f5, #dde7e1);
-    }
+    .stApp {{
+        background: {bg};
+    }}
 
-    h1, h2, h3 {
-        color: #2f4f4f;
+    h1, h2, h3 {{
+        color: {text};
         text-align: center;
-        font-family: 'Trebuchet MS', sans-serif;
-    }
+    }}
 
-    .quote-box {
-        background-color: rgba(255,255,255,0.8);
+    .quote-box {{
+        background-color: {box};
         padding: 20px;
         border-radius: 20px;
-        border: 1px solid #c7d4cc;
+        border: 1px solid {border};
         font-size: 22px;
         text-align: center;
-        color: #2f4f4f;
+        color: {text};
         margin-bottom: 20px;
         box-shadow: 0px 4px 12px rgba(0,0,0,0.08);
         backdrop-filter: blur(8px);
-    }
+    }}
 
-    .stTextArea textarea {
-        background-color: #f8fbf9;
+    .stTextArea textarea {{
+        background-color: {box};
         border-radius: 14px;
-        border: 1px solid #c7d4cc;
-        color: #2f4f4f;
-    }
+        border: 1px solid {border};
+        color: {text};
+    }}
 
-    .stTextInput input {
-        background-color: #f8fbf9;
+    .stTextInput input {{
+        background-color: {box};
         border-radius: 14px;
-        border: 1px solid #c7d4cc;
-        color: #2f4f4f;
-    }
+        border: 1px solid {border};
+        color: {text};
+    }}
 
-    .stButton>button {
-        background-color: #5c7c6f;
+    .stButton>button {{
+        background-color: {primary};
         color: white;
         border-radius: 14px;
         border: none;
         padding: 10px 20px;
         font-size: 16px;
         transition: 0.3s;
-    }
+    }}
 
-    .stButton>button:hover {
-        background-color: #40584e;
+    .stButton>button:hover {{
+        opacity: 0.85;
         transform: scale(1.03);
-    }
+    }}
 
     </style>
     """,
