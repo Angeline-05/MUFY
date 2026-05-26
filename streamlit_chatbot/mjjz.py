@@ -1,6 +1,4 @@
 
-
-```python
 import streamlit as st
 import random
 import json
@@ -246,8 +244,6 @@ for d in sorted(journal_data.keys(), reverse=True):
         st.write("Mood:", journal_data[d]["mood"])
         st.write(journal_data[d]["entry"])
         st.caption(journal_data[d]["time"])
-```
 
----
 
 
