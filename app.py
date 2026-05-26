@@ -84,17 +84,27 @@ quotes = [
 # ----------------------------
 # DAILY QUOTE
 # ----------------------------
-st.title("🌸 Positive Vibes App 🌸")
+# ----------------------------
+# DAILY QUOTE
+# ----------------------------
+st.title("🌸 Bloom Space 🌸")
 
 st.subheader("✨ Daily Positive Quote ✨")
 
-random.seed(date.today().toordinal())
-daily_quote = random.choice(quotes)
+# Save quote in session state
+if "current_quote" not in st.session_state:
+    st.session_state.current_quote = random.choice(quotes)
 
+# Display quote
 st.markdown(
-    f'<div class="quote-box">{daily_quote}</div>',
+    f'<div class="quote-box">{st.session_state.current_quote}</div>',
     unsafe_allow_html=True
 )
+
+# Button to change quote
+if st.button("🌷 New Positive Quote"):
+    st.session_state.current_quote = random.choice(quotes)
+    st.rerun()
 
 # ----------------------------
 # JOURNAL SECTION
@@ -190,4 +200,62 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# ----------------------------
+# AI POSITIVITY CHATBOT
+# ----------------------------
+st.subheader("🤖 Positivity Chat Buddy")
+
+# Save chat history
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+# User input
+user_message = st.chat_input("Type your thoughts here...")
+
+# Bot response function
+def positivity_bot(message):
+    message = message.lower()
+
+    if "sad" in message:
+        return "I'm here for you 💖 Sad days do not last forever."
+
+    elif "stress" in message or "stressed" in message:
+        return "Take things one step at a time 🌸 You do not need to carry everything at once."
+
+    elif "tired" in message:
+        return "You deserve rest too ☁️ Please be gentle with yourself."
+
+    elif "anxious" in message:
+        return "Pause for a moment 🌿 Breathe slowly. You are safe."
+
+    elif "lonely" in message:
+        return "Even when it feels lonely, you are still worthy of love and care ✨"
+
+    elif "happy" in message:
+        return "YAYYY 🌷 Hold onto that happiness!"
+
+    else:
+        return "You are doing better than you think 💕"
+
+# When user sends message
+if user_message:
+
+    # Save user message
+    st.session_state.messages.append(
+        {"role": "user", "content": user_message}
+    )
+
+    # Generate bot response
+    bot_reply = positivity_bot(user_message)
+
+    # Save bot response
+    st.session_state.messages.append(
+        {"role": "assistant", "content": bot_reply}
+    )
+
+# Display chat messages
+for message in st.session_state.messages:
+
+    with st.chat_message(message["role"]):
+        st.markdown(message["content"])
 
